@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author varun
+ * @author gunav
  */
 public class InventoryAnalystManagementRole extends Role{
     

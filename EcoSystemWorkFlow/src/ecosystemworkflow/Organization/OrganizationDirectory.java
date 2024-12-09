@@ -8,11 +8,15 @@ import java.util.ArrayList;
 
 /**
  *
- * @author hotragn
+ * @author gunav
  */
 public class OrganizationDirectory {
     
     private ArrayList<Organization> organizations;
+    
+    public OrganizationDirectory() {
+        organizations = new ArrayList<>();
+    }
 
     public ArrayList<Organization> getOrganizations() {
         return organizations;

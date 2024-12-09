@@ -8,7 +8,7 @@ import ecosystemworkflow.WorkFlow.WorkRequestDirectory;
 
 /**
  *
- * @author varun
+ * @author gunav
  */
 public class ChemicalCompoundResearch {
     

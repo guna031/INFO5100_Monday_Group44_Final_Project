@@ -20,7 +20,7 @@ public abstract class Enterprise extends Organization{
     {
       super(name);
       this.enterpriseType= type;
-      organizationDirectory = new OrganizationDirectory();
+      this.organizationDirectory = new OrganizationDirectory();
       
     }
     

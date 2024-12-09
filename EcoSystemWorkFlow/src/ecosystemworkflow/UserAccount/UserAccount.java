@@ -16,7 +16,7 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author gunav
  */
-public class UserAccount {
+    public class UserAccount {
 
     private String userName;
     private String password;

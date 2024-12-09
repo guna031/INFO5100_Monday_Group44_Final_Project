@@ -10,10 +10,11 @@ import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.bloodSupply.BloodBankMainJPanel;
 
 /**
  *
- * @author varun
+ * @author gunav
  */
 public class DistributionManagerRole extends Role{
     
@@ -23,11 +24,11 @@ public class DistributionManagerRole extends Role{
             Organization organization, 
             Enterprise enterprise, 
             EcoSystem system) {
-        return new BloodDistributionManagerWorkAreaJPanel(userProcessContainer, 
+        return new BloodBankMainJPanel(
                 account, 
                 organization, 
                 enterprise,
-                system);
+                system, userProcessContainer);
     }
     
     @Override

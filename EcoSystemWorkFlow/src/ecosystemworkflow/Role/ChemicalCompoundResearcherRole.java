@@ -10,10 +10,11 @@ import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.rAndD.RAndDMainJPanel;
 
 /**
  *
- * @author varun
+ * @author gunav
  */
 public class ChemicalCompoundResearcherRole extends Role{
     
@@ -23,7 +24,7 @@ public class ChemicalCompoundResearcherRole extends Role{
             Organization organization, 
             Enterprise enterprise, 
             EcoSystem system) {
-        return new ChemicalResearchWorkAreaJPanel(userProcessContainer, 
+        return new RAndDMainJPanel(userProcessContainer, 
                 account, 
                 organization, 
                 enterprise,

@@ -15,7 +15,6 @@ public class DrugProductionRequest extends WorkRequest{
     private String drugName;
     private int quantity;
     private String productionStatus; 
-    
     private String priority;
 
    
@@ -26,6 +25,12 @@ public class DrugProductionRequest extends WorkRequest{
     
     public void setUrgency(String priority) {
         this.priority = priority;
+    }
+    
+    public DrugProductionRequest(){
+        super();
+        this.productionStatus = "Requested";  // Initialize production status
+
     }
 
 //    public DrugProductionRequest(String message, UserAccount sender, UserAccount receiver, String drugName, int quantity) {
@@ -66,9 +71,9 @@ public class DrugProductionRequest extends WorkRequest{
                 "requestId='" + getId() + '\'' +
                 ", message='" + getMessage() + '\'' +
                 ", sender=" + getSender().getUserName() +
-                ", receiver=" + getReciever().getUserName() +
+//                ", receiver=" + getReciever().getUserName() +
                 ", status='" + getStatus() + '\'' +
-                ", requestDate=" + getDateOfRequest() +
+                ", requestDate=" + getDateOfRequest() + 
                 ", resolveDate=" + getDateOfResolving() +
                 ", drugName='" + drugName + '\'' +
                 ", quantity=" + quantity +

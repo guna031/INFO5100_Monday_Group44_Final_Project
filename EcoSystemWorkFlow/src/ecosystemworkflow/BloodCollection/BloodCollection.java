@@ -8,7 +8,7 @@ import ecosystemworkflow.WorkFlow.WorkRequestDirectory;
 
 /**
  *
- * @author hotragn
+ * @author gunav
  */
 public class BloodCollection {
     

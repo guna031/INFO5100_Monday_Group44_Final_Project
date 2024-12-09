@@ -16,7 +16,7 @@ import java.util.HashSet;
 
 /**
  *
- * @author hotragn
+ * @author gunav
  */
 public class HospitalAdministrationOrganization extends Organization{
     

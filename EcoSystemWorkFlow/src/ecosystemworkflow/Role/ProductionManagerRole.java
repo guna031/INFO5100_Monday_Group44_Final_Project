@@ -4,23 +4,24 @@
  */
 package ecosystemworkflow.Role;
 
-import UserInterface.Pharmaceutical.DrugProductionWorkAreaJPanel;
 import ecosystemworkflow.EcoSystem;
 import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.DrugProductionOrganization;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.pharma.PharmaceuticalWorkAreaJPanel;
+import ui.pharma.User.DrugProductionManagerWorkAreaJPanel;
 
 /**
  *
- * @author varun
+ * @author gunav
  */
 public class ProductionManagerRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel workArea, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
-        return new DrugProductionWorkAreaJPanel(workArea, account, (DrugProductionOrganization) organization, enterprise, system);
+        return new PharmaceuticalWorkAreaJPanel(workArea, account, (DrugProductionOrganization) organization, enterprise, system);
     }
 
     @Override

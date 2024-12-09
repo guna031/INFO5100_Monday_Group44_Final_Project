@@ -14,7 +14,7 @@ import java.util.HashSet;
 
 /**
  *
- * @author hotragn
+ * @author gunav
  */
 public class DrugProductionOrganization extends Organization {
     

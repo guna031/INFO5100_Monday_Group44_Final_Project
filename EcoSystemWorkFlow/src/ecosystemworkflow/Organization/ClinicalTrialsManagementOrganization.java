@@ -11,7 +11,7 @@ import java.util.HashSet;
 
 /**
  *
- * @author hotragn
+ * @author gunav
  */
 public class ClinicalTrialsManagementOrganization extends Organization {
     

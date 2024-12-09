@@ -153,8 +153,8 @@ public class BloodSupplyRequest extends WorkRequest {
                 + ", requiredByDate=" + requiredByDate
                 + ", status='" + getStatus() + '\''
                 + ", priority='" + getPriorityLevel() + '\''
-                + ", sender=" + getSender().getUserName()
-                + ", receiver=" + getReciever().getUserName()
+//                + ", sender=" + getSender().getUserName()
+//                + ", receiver=" + getReciever().getUserName()
                 + '}';
     }
 

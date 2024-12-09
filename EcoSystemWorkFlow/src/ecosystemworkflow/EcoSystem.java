@@ -95,7 +95,7 @@ public class EcoSystem extends Organization {
     
      public static boolean validatePassword(String password) {
         // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.
-        return password.matches("^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@#$%^&+=!])(?!.*\\s)[a-zA-Z\\d@#$%^&+=!]{8,}$");
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?!.*\\s)[a-zA-Z\\d@#$%^&+=!]{8,}$");
     }
 
     public static boolean checkIfUsernameIsUnique(String username) {

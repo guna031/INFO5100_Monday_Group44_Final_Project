@@ -9,7 +9,9 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.ext.DatabaseFileLockedException;
 import ecosystemworkflow.EcoSystem;
+import java.io.File;
 
 /**
  *
@@ -49,17 +51,30 @@ public class DB4OUtil {
         return system;
     }
     
-    private ObjectContainer createConnection() {
-        try {
-            EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
-            config.common().activationDepth(Integer.MAX_VALUE);
-            config.common().updateDepth(Integer.MAX_VALUE);
-            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true);
-            return Db4oEmbedded.openFile(config, FILENAME);
-        } catch (Exception ex) {
-            System.out.println("Database Connection Error: " + ex.getMessage());
-        }
+private ObjectContainer createConnection() {
+    try {
+        String filePath = System.getProperty("user.home") + "/DataBank.db4o";
+        
+        EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+        config.common().activationDepth(Integer.MAX_VALUE);
+        config.common().updateDepth(Integer.MAX_VALUE);
+        config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true);
+        
+        // Create directory if it doesn't exist
+        File dbFile = new File(filePath);
+        dbFile.getParentFile().mkdirs();
+        
+        // Try to open existing file or create new one
+        return Db4oEmbedded.openFile(config, filePath);
+        
+    } catch (DatabaseFileLockedException ex) {
+        System.out.println("Database is locked. Please ensure no other instance is running.");
+        return null;
+    } catch (Exception ex) {
+        System.out.println("Database Connection Error: " + ex.getMessage());
+        ex.printStackTrace();
         return null;
     }
+}
     
 }

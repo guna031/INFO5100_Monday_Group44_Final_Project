@@ -7,6 +7,8 @@ package ui.HealthCare.User;
 import UserInterface.HeathCare.User.ViewDrugRequestsJPanel;
 import ecosystemworkflow.EcoSystem;
 import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Enterprise.PharmaceuticalEnterprise;
+import ecosystemworkflow.Network.Network;
 import ecosystemworkflow.Organization.DrugProductionOrganization;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
@@ -68,86 +70,77 @@ public class RequestDrugProductionJPanel extends javax.swing.JPanel {
         lblStatus = new javax.swing.JLabel();
         cmbPriority = new javax.swing.JComboBox<>();
         buttonViewReq = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonSubmit.setBackground(new java.awt.Color(255, 255, 255));
+        buttonSubmit.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         buttonSubmit.setText("Submit Request");
         buttonSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSubmitActionPerformed(evt);
             }
         });
+        add(buttonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 294, 146, -1));
 
+        labelDrugName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        labelDrugName.setForeground(new java.awt.Color(255, 255, 255));
         labelDrugName.setText("Drug Name");
+        add(labelDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 177, -1, -1));
 
         txtDrugName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDrugNameActionPerformed(evt);
             }
         });
+        add(txtDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 172, 118, -1));
 
+        labelQuantity.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        labelQuantity.setForeground(new java.awt.Color(255, 255, 255));
         labelQuantity.setText("Quantity");
+        add(labelQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 207, -1, -1));
 
         txtQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtQuantityActionPerformed(evt);
             }
         });
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 202, 118, -1));
 
+        lblStatus.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblStatus.setForeground(new java.awt.Color(255, 255, 255));
         lblStatus.setText("Priority");
+        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 244, -1, -1));
 
         cmbPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cmbPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 238, 118, -1));
 
+        buttonViewReq.setBackground(new java.awt.Color(255, 255, 255));
+        buttonViewReq.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         buttonViewReq.setText("View Requests");
         buttonViewReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonViewReqActionPerformed(evt);
             }
         });
+        add(buttonViewReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 294, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(357, 357, 357)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelQuantity)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelDrugName)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblStatus)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonViewReq)
-                        .addComponent(buttonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(409, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDrugName)
-                    .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelQuantity)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatus))
-                .addGap(41, 41, 41)
-                .addComponent(buttonSubmit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonViewReq)
-                .addContainerGap(190, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Drug Production");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 13, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Request");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 88, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (6).jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 620));
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
@@ -155,45 +148,59 @@ public class RequestDrugProductionJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill out all details");
             return;
         }
-        
+
         try {
-            String drugName = txtDrugName.getText().trim();
-            String priority = (String) cmbPriority.getSelectedItem();
-            int quantity = Integer.parseInt(txtQuantity.getText());
-            
-            if(quantity <= 0) {
-                JOptionPane.showMessageDialog(null, "Quantity must be greater than 0");
-                return;
-            }
-            
-            DrugProductionRequest request = new DrugProductionRequest();
-            request.setMessage("Request for " + quantity + " units of " + drugName);
-            request.setSender(userAccount);
-            request.setDrugName(drugName);
-            request.setQuantity(quantity);
-            request.setUrgency(priority);
-            request.setStatus("Pending");
-            request.setDateOfRequest(new Date());
-            
-            Organization org = null;
-            for(Organization organization : enterprise.getOrganizationDirectory().getOrganizations()) {
-                if(organization instanceof DrugProductionOrganization) {
-                    org = organization;
-                    break;
+            // Find drug production organization first
+            // Find pharmaceutical enterprise first
+            PharmaceuticalEnterprise pharma = null;
+            for(Network network : system.getNetworks()) {
+                for(Enterprise ent : network.getEnterprises().getEnterpriseList()) {
+                    if(ent instanceof PharmaceuticalEnterprise) {
+                        pharma = (PharmaceuticalEnterprise)ent;
+                        break;
+                    }
                 }
             }
-            
-            if(org != null) {
-                org.getWorkRequestList().addWorkRequest(request);
-                userAccount.getWorkQueue().addWorkRequest(request);
-                JOptionPane.showMessageDialog(null, "Request sent to Production Team");
+
+            // Then find drug production organization
+            Organization drugProductionOrg = null;
+            if(pharma != null) {
+                for(Organization org : pharma.getOrganizationDirectory().getOrganizations()) {
+                    if(org instanceof DrugProductionOrganization) {
+                        drugProductionOrg = org;
+                        System.out.println("Found Drug Production Organization");
+                        break;
+                    }
+                }
+            }
+            if(drugProductionOrg == null) {
+                System.out.println("Drug Production Organization not found");
+                return;
+            }
+
+            if(drugProductionOrg != null){
+                // Create and initialize request
+                DrugProductionRequest request = new DrugProductionRequest();
+                request.setDrugName(txtDrugName.getText().trim());
+                request.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                request.setUrgency((String) cmbPriority.getSelectedItem());
+                request.setStatus("Requested");
+                request.setSender(userAccount);
+                request.setDateOfRequest(new Date());
+                request.setProductionStatus("Requested");
+
+                // Add request to work queues
+                drugProductionOrg.getWorkRequestList().getWorkRequests().add(request);
+                userAccount.getWorkQueue().getWorkRequests().add(request);
+                system.getWorkRequestList().getWorkRequests().add(request);
+
+                JOptionPane.showMessageDialog(null, "Request sent successfully");
                 clearForm();
             }
-            
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter quantity in correct format");
         }
-        
+
     }//GEN-LAST:event_buttonSubmitActionPerformed
 
     private void txtDrugNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDrugNameActionPerformed
@@ -205,11 +212,27 @@ public class RequestDrugProductionJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtQuantityActionPerformed
 
     private void buttonViewReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewReqActionPerformed
-        ViewDrugRequestsJPanel viewPanel = new ViewDrugRequestsJPanel(container, userAccount,
-            organization, enterprise, system);
-        container.add("ViewDrugRequests", viewPanel);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);
+        //    Organization drugProductionOrg = null;
+        //    for(Organization org : enterprise.getOrganizationDirectory().getOrganizations()) {
+            //        if(org instanceof DrugProductionOrganization) {
+                //            drugProductionOrg = org;
+                //            break;
+                //        }
+            //    }
+        //
+        //    if(drugProductionOrg == null) {
+            //        // If organization not found, create it
+            //        drugProductionOrg = enterprise.getOrganizationDirectory()
+            //            .createOrganization(Organization.OrganizationType.DrugProductionOrganization, "Drug Production");
+            //        enterprise.getOrganizationDirectory().getOrganizations().add(drugProductionOrg);
+            //    }
+        //
+        //    // Now create view panel with the found/created organization
+        //    ViewDrugRequestsJPanel viewPanel = new ViewDrugRequestsJPanel(container, userAccount,
+            //        drugProductionOrg, enterprise, system);
+        //    container.add("ViewDrugRequests", viewPanel);
+        //    CardLayout layout = (CardLayout) container.getLayout();
+        //    layout.next(container);
     }//GEN-LAST:event_buttonViewReqActionPerformed
 
 
@@ -217,6 +240,9 @@ public class RequestDrugProductionJPanel extends javax.swing.JPanel {
     private javax.swing.JButton buttonSubmit;
     private javax.swing.JButton buttonViewReq;
     private javax.swing.JComboBox<String> cmbPriority;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelDrugName;
     private javax.swing.JLabel labelQuantity;
     private javax.swing.JLabel lblStatus;

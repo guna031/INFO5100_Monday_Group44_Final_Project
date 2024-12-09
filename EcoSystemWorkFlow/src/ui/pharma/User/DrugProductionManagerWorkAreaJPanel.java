@@ -4,6 +4,7 @@
  */
 package ui.pharma.User;
 
+import ecosystemworkflow.EcoSystem;
 import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.Organization.QualityControlAndAssuranceOrganization;
@@ -21,25 +22,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author gunav
  */
-public class DrugProductionManagerWorkAreaJPanel  extends javax.swing.JPanel {
+public class DrugProductionManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ViewReceivedRequestsJPanel
+     * Creates new form DrugProductionManagerWorkAreaJPanel
      */
-     private UserAccount userAccount;
-    private Organization organization;
-    private Enterprise enterprise;
-    private JPanel container;
-    
-    public DrugProductionManagerWorkAreaJPanel(JPanel container, UserAccount account, 
-            Organization organization, Enterprise enterprise) {
+    JPanel workArea;
+    UserAccount UserAccount;
+    Organization org;
+    Enterprise Enterprise;
+    EcoSystem ESystem;
+
+    public DrugProductionManagerWorkAreaJPanel(JPanel workArea, UserAccount UserAccount, Organization org, Enterprise Enterprise, EcoSystem ESystem) {
         initComponents();
-        this.container = container;
-        this.userAccount = account;
-        this.organization = organization;
-        this.enterprise = enterprise;
-        populateTable();
+        this.workArea = workArea;
+        this.UserAccount = UserAccount;
+        this.org = org;
+        this.Enterprise = Enterprise;
+        this.ESystem = ESystem;
+            populateTable();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,42 +52,26 @@ public class DrugProductionManagerWorkAreaJPanel  extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblDrugRequests = new javax.swing.JTable();
         btnProces = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDrugRequests1 = new javax.swing.JTable();
         btnProces1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        tblDrugRequests.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Request ID", "Drug Name", "Requested Quantity", "Status", "Request Date", "Expected Delivery Date", "Priority", "Sender "
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tblDrugRequests);
-
+        btnProces.setBackground(new java.awt.Color(255, 255, 255));
+        btnProces.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnProces.setText("Process Request");
         btnProces.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcesActionPerformed(evt);
             }
         });
+        add(btnProces, new org.netbeans.lib.awtextra.AbsoluteConstraints(793, 304, -1, -1));
 
         tblDrugRequests1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,70 +96,63 @@ public class DrugProductionManagerWorkAreaJPanel  extends javax.swing.JPanel {
 
         jScrollPane5.setViewportView(jScrollPane3);
 
-        btnProces1.setText("back");
+        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 186, 791, 100));
+
+        btnProces1.setBackground(new java.awt.Color(255, 255, 255));
+        btnProces1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnProces1.setText("Back");
         btnProces1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProces1ActionPerformed(evt);
             }
         });
+        add(btnProces1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnProces1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnProces)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(btnProces1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btnProces)
-                .addContainerGap(178, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Pharmaceuticals");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Drug Production Manager");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (3).jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 830));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tblDrugRequests.getSelectedRow();
-        if(selectedRow < 0) {
+        int selectedRow = tblDrugRequests1.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
-        DrugProductionRequest request = (DrugProductionRequest)
-            tblDrugRequests.getValueAt(selectedRow, 0);
-            
+
+        DrugProductionRequest request = (DrugProductionRequest) tblDrugRequests1.getValueAt(selectedRow, 0);
+
         // Create QA request
         QualityControlAndAssuranceRequest qaRequest = new QualityControlAndAssuranceRequest();
         qaRequest.setMessage("QA Request for " + request.getDrugName());
-        qaRequest.setSender(userAccount);
+        qaRequest.setSender(UserAccount);
         qaRequest.setBatchNumber("BATCH-" + System.currentTimeMillis());
         qaRequest.setDrugName(request.getDrugName());
         qaRequest.setBatchSize(request.getQuantity());
         qaRequest.setStatus("Pending QA");
         qaRequest.setManufacturingDate(new Date());
-        
+
         // Find QA organization and route request
         Organization qaOrg = null;
-        for(Organization org : enterprise.getOrganizationDirectory().getOrganizations()) {
-            if(org instanceof QualityControlAndAssuranceOrganization) {
+        for (Organization org : Enterprise.getOrganizationDirectory().getOrganizations()) {
+            if (org instanceof QualityControlAndAssuranceOrganization) {
                 qaOrg = org;
                 break;
             }
         }
-        
-        if(qaOrg != null) {
+
+        if (qaOrg != null) {
             qaOrg.getWorkRequestList().addWorkRequest(qaRequest);
             request.setStatus("In QA Testing");
             JOptionPane.showMessageDialog(null, "Sent to QA for testing");
@@ -182,44 +162,45 @@ public class DrugProductionManagerWorkAreaJPanel  extends javax.swing.JPanel {
 
     private void btnProces1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProces1ActionPerformed
         // TODO add your handling code here:
-        container.remove(this);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.previous(container);
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
     }//GEN-LAST:event_btnProces1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProces;
     private javax.swing.JButton btnProces1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable tblDrugRequests;
     private javax.swing.JTable tblDrugRequests1;
     // End of variables declaration//GEN-END:variables
 
-    
     private void populateTable() {
+        if (org == null || org.getWorkRequestList() == null) {
+            System.out.println("Organization or WorkRequestList is null");  // Add debug print
+            return;
+        }
+
+        System.out.println("Organization type: " + org.getClass().getName());
+        System.out.println("Work requests count: " + org.getWorkRequestList().getWorkRequests().size());
+
         DefaultTableModel model = (DefaultTableModel) tblDrugRequests1.getModel();
         model.setRowCount(0);
-        
-        for(WorkRequest request : organization.getWorkRequestList().getWorkRequests()) {
-            if(request instanceof DrugProductionRequest) {
-                DrugProductionRequest dr = (DrugProductionRequest) request;
-                if(dr.getStatus().equals("Pending")) {
-                    Object[] row = new Object[6];
-                    row[0] = dr;
-                    row[1] = dr.getDrugName();
-                    row[2] = dr.getQuantity();
-                    row[3] = dr.getUrgency();
-                    row[4] = dr.getStatus();
-                    row[5] = dr.getDateOfRequest();
-                    model.addRow(row);
-                }
-            }
+
+        for (WorkRequest request : org.getWorkRequestList().getWorkRequests()) {
+            DrugProductionRequest dr = (DrugProductionRequest) request;
+            Object[] row = new Object[6];
+            row[0] = dr;
+            row[1] = dr.getDrugName();
+            row[2] = dr.getQuantity();
+            row[3] = dr.getUrgency();
+            row[4] = dr.getStatus();
+            row[5] = dr.getDateOfRequest();
+            model.addRow(row);
         }
     }
-    
 }

@@ -61,13 +61,22 @@ public class ViewDrugRequestsJPanel extends javax.swing.JPanel {
         btnDeleteReq = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonUpdateReq.setBackground(new java.awt.Color(255, 255, 255));
+        buttonUpdateReq.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         buttonUpdateReq.setText("Update Request");
+        buttonUpdateReq.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         buttonUpdateReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdateReqActionPerformed(evt);
             }
         });
+        add(buttonUpdateReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 369, -1, -1));
 
         tblDrugRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,104 +101,94 @@ public class ViewDrugRequestsJPanel extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 182, 961, 169));
+
+        btnDeleteReq.setBackground(new java.awt.Color(255, 255, 255));
+        btnDeleteReq.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnDeleteReq.setText("Delete Request");
+        btnDeleteReq.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnDeleteReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteReqActionPerformed(evt);
             }
         });
+        add(btnDeleteReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 369, -1, -1));
 
+        btnRefresh.setBackground(new java.awt.Color(255, 255, 255));
+        btnRefresh.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnRefresh.setText("Refresh");
+        btnRefresh.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
             }
         });
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 369, -1, -1));
 
-        btnBack.setText("back");
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnBack.setText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 125, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRefresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonUpdateReq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteReq)
-                .addGap(71, 71, 71))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(btnBack)))
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(btnBack)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonUpdateReq)
-                    .addComponent(btnDeleteReq)
-                    .addComponent(btnRefresh))
-                .addContainerGap(458, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Requests");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Drug Production");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (6).jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 930));
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonUpdateReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateReqActionPerformed
         // TODO add your handling code here:
-        
-        
+
     }//GEN-LAST:event_buttonUpdateReqActionPerformed
 
     private void btnDeleteReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteReqActionPerformed
-    int selectedRow = tblDrugRequests.getSelectedRow();
-    if(selectedRow < 0) {
-        JOptionPane.showMessageDialog(this, "Please select a request to cancel");
-        return;
-    }
-    
-    DefaultTableModel model = (DefaultTableModel) tblDrugRequests.getModel();
-    DrugProductionRequest request = (DrugProductionRequest)model.getValueAt(selectedRow, 0);
-    
-    if(request.getStatus().equals("Completed") || 
-       request.getStatus().equals("Rejected") ||
-       request.getStatus().equals("In Production")) {
-        JOptionPane.showMessageDialog(this, 
-            "Cannot cancel request that is already " + request.getStatus());
-        return;
-    }
-    
-    int response = JOptionPane.showConfirmDialog(this, 
-        "Are you sure you want to cancel this request?", 
-        "Confirm Cancellation", 
-        JOptionPane.YES_NO_OPTION);
-        
-    if(response == JOptionPane.YES_OPTION) {
-        request.setStatus("Cancelled");
-        populateTable();
-        JOptionPane.showMessageDialog(this, "Request cancelled successfully!");
-    }
+        int selectedRow = tblDrugRequests.getSelectedRow();
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request to cancel");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblDrugRequests.getModel();
+        DrugProductionRequest request = (DrugProductionRequest)model.getValueAt(selectedRow, 0);
+
+        if(request.getStatus().equals("Completed") ||
+            request.getStatus().equals("Rejected") ||
+            request.getStatus().equals("In Production")) {
+            JOptionPane.showMessageDialog(this,
+                "Cannot cancel request that is already " + request.getStatus());
+            return;
+        }
+
+        int response = JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to cancel this request?",
+            "Confirm Cancellation",
+            JOptionPane.YES_NO_OPTION);
+
+        if(response == JOptionPane.YES_OPTION) {
+            request.setStatus("Cancelled");
+            populateTable();
+            JOptionPane.showMessageDialog(this, "Request cancelled successfully!");
+        }
     }//GEN-LAST:event_btnDeleteReqActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
-                populateTable();
+        populateTable();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -197,7 +196,6 @@ public class ViewDrugRequestsJPanel extends javax.swing.JPanel {
         container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
-
     }//GEN-LAST:event_btnBackActionPerformed
 
 
@@ -206,6 +204,9 @@ public class ViewDrugRequestsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteReq;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton buttonUpdateReq;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDrugRequests;

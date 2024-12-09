@@ -72,110 +72,84 @@ public class BloodQualityTestingJPanel extends javax.swing.JPanel {
         txtComments = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         chkPassed = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Blood Type:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 128, -1, -1));
 
+        txtBloodType.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtBloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 125, 150, -1));
+
+        lblQuantity.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblQuantity.setText("Quantity: ");
+        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
+        txtQuantity.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 167, 150, -1));
+
+        lblQuantity1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblQuantity1.setText("Temperature:");
+        add(lblQuantity1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, -1));
 
+        txtTemperature.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 207, 150, -1));
+
+        lblStorageReq.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblStorageReq.setText("Storage Requirement: ");
+        add(lblStorageReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
+        txtStorageReq.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtStorageReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 247, 150, -1));
+
+        btnProcess.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnProcess.setText("Process");
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 391, -1, -1));
 
         txtComments.setColumns(20);
         txtComments.setRows(5);
+        txtComments.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         jScrollPane1.setViewportView(txtComments);
 
-        jLabel2.setText("Comments:");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 287, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setText("Comments:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 287, -1, -1));
+
+        chkPassed.setBackground(new java.awt.Color(255, 255, 255));
+        chkPassed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         chkPassed.setText("QA Passed");
         chkPassed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkPassedActionPerformed(evt);
             }
         });
+        add(chkPassed, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 124, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblQuantity1)
-                                .addGap(24, 24, 24)
-                                .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblQuantity)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblStorageReq)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtStorageReq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnProcess)
-                            .addComponent(chkPassed)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel2)
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chkPassed))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblQuantity)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblQuantity1)
-                            .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnProcess)
-                        .addGap(24, 24, 24)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStorageReq)
-                    .addComponent(txtStorageReq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2)))
-                .addContainerGap(150, Short.MAX_VALUE))
-        );
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Blood Bank");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 13, 169, -1));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Quality Testing");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 70, 154, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (4).jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 650));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
@@ -184,13 +158,13 @@ public class BloodQualityTestingJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please add testing comments");
             return;
         }
-        
+
         try {
             request.setPatientCondition(txtComments.getText().trim());
             request.setTemperature(Double.parseDouble(txtTemperature.getText()));
             request.setStorageRequirements(txtStorageReq.getText());
             request.setStatus(chkPassed.isSelected() ? "QA Passed" : "Failed");
-            
+
             if(chkPassed.isSelected()) {
                 TransportOrganizationRequest transportRequest = new TransportOrganizationRequest();
                 transportRequest.setMessage("Transport for Blood Type: " + request.getBloodType());
@@ -199,8 +173,8 @@ public class BloodQualityTestingJPanel extends javax.swing.JPanel {
                 transportRequest.setQuantity(request.getQuantity());
                 transportRequest.setStatus("Pending Pickup");
                 transportRequest.setRequiresRefrigeration(true);
-                
-                  Organization transportOrg = null;
+
+                Organization transportOrg = null;
                 for(Network network : system.getNetworks()) {
                     for(Enterprise ent : network.getEnterprises().getEnterpriseList()) {
                         for(Organization org : ent.getOrganizationDirectory().getOrganizations()) {
@@ -212,18 +186,17 @@ public class BloodQualityTestingJPanel extends javax.swing.JPanel {
                     }
                 }
 
-                
                 if(transportOrg != null) {
                     transportOrg.getWorkRequestList().addWorkRequest(transportRequest);
                     request.setStatus("Awaiting Transport");
                     JOptionPane.showMessageDialog(null, "QA Passed - Transport request created");
                 }
             }
-            
+
             container.remove(this);
             CardLayout layout = (CardLayout) container.getLayout();
             layout.previous(container);
-            
+
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Error processing request: " + e.getMessage());
         }
@@ -239,6 +212,9 @@ public class BloodQualityTestingJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkPassed;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblQuantity1;

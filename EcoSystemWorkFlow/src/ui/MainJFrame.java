@@ -4,17 +4,63 @@
  */
 package ui;
 
+import ecosystemworkflow.ConfigureASystem;
+import ecosystemworkflow.DB4OUtil.DB4OUtil;
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Network.Network;
+import ecosystemworkflow.Organization.Organization;
+import ecosystemworkflow.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author gunav
  */
 public class MainJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainJFrame
-     */
+    private EcoSystem system;
+    private DB4OUtil db4outil = DB4OUtil.getInstance();
+
     public MainJFrame() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setSize(550, 350);
+        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        system = db4outil.retrieveSystem();
+        if (system == null) {
+            system = ConfigureASystem.configure();
+        }
+
+        // Add this to MainJFrame constructor after system initialization
+        System.out.println("System initialized with users:");
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            System.out.println("System user: " + ua.getUserName());
+        }
+        for (Network network : system.getNetworks()) {
+            for (Enterprise enterprise : network.getEnterprises().getEnterpriseList()) {
+                System.out.println("Enterprise: " + enterprise.getName());
+                for (UserAccount ua : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                    System.out.println("Enterprise user: " + ua.getUserName());
+                }
+                for (Organization org : enterprise.getOrganizationDirectory().getOrganizations()) {
+                    System.out.println("Organization: " + org.getClass().getName());
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        System.out.println("Org user: " + ua.getUserName());
+                    }
+                }
+            }
+        }
+        EcoSystem.setInstance(system);
+        btnLogOut.setEnabled(false);
     }
 
     /**
@@ -26,21 +72,148 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtUserName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        btnLogIn = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        container = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Username:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 25, -1, -1));
+        jPanel1.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 25, 88, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Passsword:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 25, -1, -1));
+
+        btnLogIn.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogIn.setText("Login");
+        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+
+        btnLogOut.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogOut.setText("Logout");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 25, 102, -1));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (1).jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1190, 100));
+
+        jSplitPane1.setTopComponent(jPanel1);
+
+        container.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(container);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        String username = txtUserName.getText();
+    char[] passwordCharArray = txtPassword.getPassword();
+    String password = String.valueOf(passwordCharArray);
+    
+    if (username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "All fields are necessary");
+        return;
+    }
+    
+    UserAccount userAccount = null;
+    Enterprise inEnterprise = null;
+    Organization inOrganization = null;
+    
+    // Search through network hierarchy
+    for (Network network : system.getNetworks()) {
+        for (Enterprise enterprise : network.getEnterprises().getEnterpriseList()) {
+            // Search in organizations first
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizations()) {
+                userAccount = organization.getUserAccountDirectory().authenticateUser(username, password);
+                if (userAccount != null) {
+                    inEnterprise = enterprise;
+                    inOrganization = organization;
+                    System.out.println("Found in organization: " + organization.getClass().getName());
+                    break;
+                }
+            }
+            if (userAccount != null) break;
+        }
+        if (userAccount != null) break;
+    }
+    
+    if (userAccount == null) {
+        JOptionPane.showMessageDialog(null, "Invalid credentials");
+        return;
+    }
+    
+    if (inOrganization == null) {
+        JOptionPane.showMessageDialog(null, "No organization found for user");
+        return;
+    }
+    
+    CardLayout layout = (CardLayout) container.getLayout();
+    container.add("WorkArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+    layout.next(container);
+    
+    btnLogIn.setEnabled(false);
+    txtUserName.setEnabled(false);
+    txtPassword.setEnabled(false);
+    btnLogOut.setEnabled(true);
+
+    }//GEN-LAST:event_btnLogInActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        btnLogIn.setEnabled(true);
+        txtUserName.setEnabled(true);
+        txtPassword.setEnabled(true);
+        btnLogOut.setEnabled(false);
+
+        txtUserName.setText("");
+        txtPassword.setText("");
+
+        container.removeAll();
+        JPanel blankJP = new JPanel();
+        container.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +251,15 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogIn;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JPanel container;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

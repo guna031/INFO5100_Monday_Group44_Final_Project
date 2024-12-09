@@ -67,6 +67,11 @@ public class HospitalBloodDeliveryConfirmationJPanel extends javax.swing.JPanel 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDeliveries = new javax.swing.JTable();
         btnDelivery = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblDeliveries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,42 +81,39 @@ public class HospitalBloodDeliveryConfirmationJPanel extends javax.swing.JPanel 
                 {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Trail ID", "Blood", "Quantity", "Delivery Time", "Refrigeration"
             }
         ));
         jScrollPane1.setViewportView(tblDeliveries);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 126, 696, 100));
+
+        btnDelivery.setBackground(new java.awt.Color(255, 255, 255));
+        btnDelivery.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDelivery.setText("Confirm Delivery");
+        btnDelivery.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveryActionPerformed(evt);
             }
         });
+        add(btnDelivery, new org.netbeans.lib.awtextra.AbsoluteConstraints(637, 244, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDelivery)
-                .addGap(155, 155, 155))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelivery)
-                .addContainerGap(228, Short.MAX_VALUE))
-        );
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Hospital");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Blood Delivery Confirmation");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 290, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (4).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 680));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
@@ -121,13 +123,13 @@ public class HospitalBloodDeliveryConfirmationJPanel extends javax.swing.JPanel 
             JOptionPane.showMessageDialog(null, "Please select a delivery");
             return;
         }
-        
+
         TransportOrganizationRequest request = (TransportOrganizationRequest)
-            tblDeliveries.getValueAt(selectedRow, 0);
-            
+        tblDeliveries.getValueAt(selectedRow, 0);
+
         request.setStatus("Received");
         request.setDateOfResolving(new Date());
-        
+
         populateTable();
         JOptionPane.showMessageDialog(null, "Blood delivery confirmed");
     }//GEN-LAST:event_btnDeliveryActionPerformed
@@ -135,6 +137,9 @@ public class HospitalBloodDeliveryConfirmationJPanel extends javax.swing.JPanel 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelivery;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDeliveries;

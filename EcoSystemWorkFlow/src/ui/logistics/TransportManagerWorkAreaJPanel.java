@@ -4,10 +4,13 @@
  */
 package ui.logistics;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import ecosystemworkflow.WorkFlow.TransportOrganizationRequest;
 import ecosystemworkflow.WorkFlow.WorkRequest;
+import java.awt.CardLayout;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,16 +25,20 @@ public class TransportManagerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form TransportManagerWorkAreaJPanel
      */
-     private UserAccount userAccount;
-    private Organization organization;
+      private UserAccount userAccount;
+     private Organization organization;
     private JPanel container;
+    private Enterprise enterprise;
+    private EcoSystem system;
     
     public TransportManagerWorkAreaJPanel(JPanel container, UserAccount account, 
-            Organization organization) {
+            Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.container = container;
         this.userAccount = account;
         this.organization = organization;
+        this.system = system;
+        this.enterprise = enterprise;
         populateTable();
     }
 
@@ -49,20 +56,32 @@ public class TransportManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTransportRequests = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        backBtn1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnProcess.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnProcess.setText("Delivery");
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 312, -1, -1));
 
+        btnProcess1.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnProcess1.setText("ProcessRequest");
         btnProcess1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcess1ActionPerformed(evt);
             }
         });
+        add(btnProcess1, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 312, -1, -1));
 
         tblTransportRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,36 +98,32 @@ public class TransportManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(471, Short.MAX_VALUE)
-                .addComponent(btnProcess1)
-                .addGap(18, 18, 18)
-                .addComponent(btnProcess)
-                .addGap(246, 246, 246))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(230, 230, 230)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(230, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(312, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProcess)
-                    .addComponent(btnProcess1))
-                .addGap(165, 165, 165))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(165, 165, 165)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(207, Short.MAX_VALUE)))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 152, 460, 128));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Transport Manager Work Area ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Logistics");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
+
+        backBtn1.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn1.setText("Back");
+        backBtn1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtn1ActionPerformed(evt);
+            }
+        });
+        add(backBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 80, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (5).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 580));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
@@ -118,13 +133,13 @@ public class TransportManagerWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
+
         TransportOrganizationRequest request = (TransportOrganizationRequest)
-            tblTransportRequests.getValueAt(selectedRow, 0);
-            
+        tblTransportRequests.getValueAt(selectedRow, 0);
+
         request.setStatus("Delivered");
         request.setDateOfResolving(new Date());
-        
+
         populateTable();
         JOptionPane.showMessageDialog(null, "Delivery completed");
     }//GEN-LAST:event_btnProcessActionPerformed
@@ -136,13 +151,13 @@ public class TransportManagerWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
+
         TransportOrganizationRequest request = (TransportOrganizationRequest)
-            tblTransportRequests.getValueAt(selectedRow, 0);
-            
+        tblTransportRequests.getValueAt(selectedRow, 0);
+
         request.setStatus("In Transit");
         request.setPickupTime(new Date());
-        
+
         // Set delivery time based on priority
         if(request.getPriority().equals("Emergency")) {
             request.setDeliveryTime(new Date(System.currentTimeMillis() + (4 * 60 * 60 * 1000))); // 4 hours
@@ -151,15 +166,27 @@ public class TransportManagerWorkAreaJPanel extends javax.swing.JPanel {
         } else {
             request.setDeliveryTime(new Date(System.currentTimeMillis() + (24 * 60 * 60 * 1000))); // 24 hours
         }
-        
+
         populateTable();
         JOptionPane.showMessageDialog(null, "Delivery scheduled");
     }//GEN-LAST:event_btnProcess1ActionPerformed
 
+    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
+        // TODO add your handling code here:
+
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_backBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn1;
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton btnProcess1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblTransportRequests;

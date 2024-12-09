@@ -4,6 +4,15 @@
  */
 package ui.HealthCare;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Organization.Organization;
+import ecosystemworkflow.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import ui.HealthCare.User.Blood.RequestBloodJPanel;
+import ui.HealthCare.User.RequestDrugProductionJPanel;
+
 /**
  *
  * @author gunav
@@ -13,8 +22,22 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HospitalAdminWorkAreaJPanel
      */
-    public HospitalAdminWorkAreaJPanel() {
+    private UserAccount userAccount;
+    private Organization organization;
+    private Enterprise enterprise;
+    private EcoSystem system;
+    private JPanel container;
+    public HospitalAdminWorkAreaJPanel(UserAccount userAccount,
+     Organization organization,
+     Enterprise enterprise,
+     EcoSystem system,
+     JPanel container) {
         initComponents();
+        this.container = container;
+        this.userAccount = userAccount;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.system = system;
     }
 
     /**
@@ -26,19 +49,76 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
-        );
+        btnMngHos = new javax.swing.JButton();
+        btnSendDrug = new javax.swing.JButton();
+        btnSendBlood = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMngHos.setBackground(new java.awt.Color(255, 255, 255));
+        btnMngHos.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnMngHos.setText("Manage Hospital");
+        btnMngHos.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255)));
+        add(btnMngHos, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 355, 227, 67));
+
+        btnSendDrug.setBackground(new java.awt.Color(255, 255, 255));
+        btnSendDrug.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnSendDrug.setText("Send Drug Production Request");
+        btnSendDrug.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255)));
+        btnSendDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendDrugActionPerformed(evt);
+            }
+        });
+        add(btnSendDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 144, 227, 67));
+
+        btnSendBlood.setBackground(new java.awt.Color(255, 255, 255));
+        btnSendBlood.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnSendBlood.setText("Send Blood Request");
+        btnSendBlood.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255)));
+        btnSendBlood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendBloodActionPerformed(evt);
+            }
+        });
+        add(btnSendBlood, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 250, 227, 67));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Hospital Admin");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 30, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (1).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1020, 630));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSendDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendDrugActionPerformed
+        // TODO add your handling code here:
+        RequestDrugProductionJPanel rDPJ = new RequestDrugProductionJPanel(container, userAccount,
+            organization, enterprise, system);
+        container.add("RequestDrugProductionJPanel", rDPJ);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_btnSendDrugActionPerformed
+
+    private void btnSendBloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendBloodActionPerformed
+        // TODO add your handling code here:
+        RequestBloodJPanel rBJ = new RequestBloodJPanel(container, userAccount,
+            organization, enterprise, system);
+        container.add("RequestBloodJPanel", rBJ);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_btnSendBloodActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMngHos;
+    private javax.swing.JButton btnSendBlood;
+    private javax.swing.JButton btnSendDrug;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

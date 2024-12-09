@@ -6,10 +6,12 @@ package ecosystemworkflow;
 
 import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Network.Network;
-import ecosystemworkflow.Network.NetworkCatalog;
 import ecosystemworkflow.Organization.Organization;
+import ecosystemworkflow.Role.Role;
+import ecosystemworkflow.Role.SystemAdminRole;
 import ecosystemworkflow.UserAccount.UserAccount;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -29,6 +31,15 @@ public class EcoSystem extends Organization {
         return business;
     }
     
+      public Network createAndAddNetwork() {
+        Network network = new Network();
+        networks.add(network);
+        return network;
+    }
+      
+       public static void setInstance(EcoSystem system) {
+        business = system;
+    }
      
      public EcoSystem(){
           super(null);
@@ -76,5 +87,35 @@ public class EcoSystem extends Organization {
         this.networks = networks;
     }
      
+    @Override
+    public HashSet<Role> getSupportedRole(){
+        role.add(new SystemAdminRole());
+        return role; 
+    }
     
+     public static boolean validatePassword(String password) {
+        // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.
+        return password.matches("^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@#$%^&+=!])(?!.*\\s)[a-zA-Z\\d@#$%^&+=!]{8,}$");
+    }
+
+    public static boolean checkIfUsernameIsUnique(String username) {
+        for (Network network : business.getNetworks()) {
+            for (Enterprise enterprize : network.getEnterprises().getEnterpriseList()) {
+                for (UserAccount ua : enterprize.getUserAccountDirectory().getUserAccountList()) {
+                    if (ua.getUserName().equals(username)) {
+                        return false;
+                    }
+                }
+
+                for (Organization o : enterprize.getOrganizationDirectory().getOrganizations()) {
+                    for (UserAccount ua : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUserName().equals(username)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

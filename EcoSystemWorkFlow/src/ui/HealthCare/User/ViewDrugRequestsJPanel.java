@@ -4,8 +4,8 @@
  */
 package ui.HealthCare.User;
 
-import UserInterface.HeathCare.User.*;
-import UserInterface.HeathCare.*;
+//import UserInterface.HeathCare.User.*;
+//import UserInterface.HeathCare.*;
 import ecosystemworkflow.EcoSystem;
 import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;

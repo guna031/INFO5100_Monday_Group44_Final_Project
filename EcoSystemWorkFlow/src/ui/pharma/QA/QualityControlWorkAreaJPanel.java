@@ -5,6 +5,7 @@
 package ui.pharma.QA;
 
 import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import ecosystemworkflow.WorkFlow.QualityControlAndAssuranceRequest;
@@ -27,14 +28,16 @@ public class QualityControlWorkAreaJPanel extends javax.swing.JPanel {
     private Organization organization;
     private JPanel container;
     private EcoSystem system;
+    private Enterprise enterprise;
     
     public QualityControlWorkAreaJPanel(JPanel container, UserAccount account, 
-            Organization organization, EcoSystem system) {
+            Organization organization, EcoSystem system, Enterprise enterprise) {
         initComponents();
         this.container = container;
         this.userAccount = account;
         this.organization = organization;
         this.system = system;
+        this.enterprise = enterprise;
         populateTable();
     }
 
@@ -51,6 +54,14 @@ public class QualityControlWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblQARequests = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        backBtn2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
 
         tblQARequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,35 +78,43 @@ public class QualityControlWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jScrollPane3);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 187, 779, 132));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Process Request");
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 337, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(105, 105, 105))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(224, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Pharmaceuticals");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Quality Control");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 75, -1, -1));
+
+        backBtn2.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn2.setText("Back");
+        backBtn2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        backBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtn2ActionPerformed(evt);
+            }
+        });
+        add(backBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 109, 80, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (3).jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -105,23 +124,34 @@ public class QualityControlWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
+
         QualityControlAndAssuranceRequest request = (QualityControlAndAssuranceRequest)
-            tblQARequests.getValueAt(selectedRow, 0);
-            
+        tblQARequests.getValueAt(selectedRow, 0);
+
         ProcessQARequestJPanel processPanel = new ProcessQARequestJPanel(
             container, userAccount, organization, request, system);
         container.add("ProcessQA", processPanel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
-   
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void backBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn2ActionPerformed
+        // TODO add your handling code here:
+
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_backBtn2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblQARequests;
     // End of variables declaration//GEN-END:variables

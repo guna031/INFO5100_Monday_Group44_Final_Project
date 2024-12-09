@@ -4,7 +4,10 @@
  */
 package ui.HealthCare.User.Blood;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.BloodDonationEnterprise;
 import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Network.Network;
 import ecosystemworkflow.Organization.BloodProcessingAndStorageOrganization;
 import ecosystemworkflow.Organization.Organization;
 import static ecosystemworkflow.Organization.Organization.OrganizationType.BloodProcessingAndStorageOrganization;
@@ -24,20 +27,28 @@ public class RequestBloodJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestBloodJPanel
      */
-     private UserAccount userAccount;
+    private UserAccount userAccount;
     private Organization organization;
     private JPanel container;
     private Enterprise enterprise;
+    private EcoSystem system;
     private com.toedter.calendar.JDateChooser dateChooser;
 
     
     public RequestBloodJPanel(JPanel container, UserAccount account, 
-            Organization organization, Enterprise enterprise) {
+            Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.container = container;
         this.userAccount = account;
         this.organization = organization;
         this.enterprise = enterprise;
+        this.system = system;
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        dateChooser.setDateFormatString("MM/dd/yyyy");
+        
+        dateChooser.setBounds(300, 250, 150, 25);
+        this.add(dateChooser);
+        
         setupBloodTypeComboBox();
         setupPriorityComboBox();
     }
@@ -82,107 +93,100 @@ public class RequestBloodJPanel extends javax.swing.JPanel {
         chkUrgent = new javax.swing.JCheckBox();
         txtPatientCondition = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbBloodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBloodType.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(cmbBloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 150, 120, -1));
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Blood Type:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 156, -1, -1));
 
         cmbPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPriority.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(cmbPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 224, 120, -1));
 
-        jLabel2.setText("Priority");
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setText("Priority:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 230, -1, -1));
 
-        jLabel3.setText("Quantity");
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel3.setText("Quantity:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 195, -1, 15));
 
-        buttonSubmit.setText("submit");
+        buttonSubmit.setBackground(new java.awt.Color(255, 255, 255));
+        buttonSubmit.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        buttonSubmit.setText("Submit");
+        buttonSubmit.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         buttonSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSubmitActionPerformed(evt);
             }
         });
+        add(buttonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 358, -1, -1));
 
-        txtQuantity.setText("jTextField1");
+        txtQuantity.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 187, 120, 24));
 
+        chkUrgent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         chkUrgent.setText("Urgent");
         chkUrgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkUrgentActionPerformed(evt);
             }
         });
+        add(chkUrgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 303, -1, -1));
 
-        jLabel4.setText("Patient Condition");
+        txtPatientCondition.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtPatientCondition, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 261, 120, 24));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkUrgent)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(cmbBloodType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap(331, Short.MAX_VALUE))
-                        .addComponent(txtPatientCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtQuantity)
-                                .addComponent(cmbPriority, 0, 1, Short.MAX_VALUE))
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonSubmit)
-                        .addGap(315, 315, 315))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(13, 13, 13)
-                        .addComponent(txtPatientCondition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSubmit)
-                    .addComponent(chkUrgent))
-                .addContainerGap(233, Short.MAX_VALUE))
-        );
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel4.setText("Patient Condition:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 267, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jButton1.setText("View Sent Requests");
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 358, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Blood Bank");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 13, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Request Blood");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 75, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (4).jpg"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 710));
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
-         if(txtQuantity.getText().isEmpty()) {
+        if(txtQuantity.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill out all details");
             return;
         }
-        
+
         try {
             String bloodType = (String) cmbBloodType.getSelectedItem();
             int quantity = Integer.parseInt(txtQuantity.getText());
             Date requiredDate = dateChooser.getDate();
-            
+
             if(quantity <= 0) {
                 JOptionPane.showMessageDialog(null, "Quantity must be greater than 0");
                 return;
             }
-            
+
             BloodSupplyRequest request = new BloodSupplyRequest();
             request.setMessage("Request for " + quantity + " units of " + bloodType + " blood");
             request.setSender(userAccount);
@@ -194,11 +198,11 @@ public class RequestBloodJPanel extends javax.swing.JPanel {
             request.setStatus("Pending");
             request.setTemperature(4.0);
             request.setStorageRequirements("Standard Blood Storage Protocol");
-            
+
             if(txtPatientCondition.getText().trim().length() > 0) {
                 request.setPatientCondition(txtPatientCondition.getText().trim());
             }
-            
+
             Organization org = null;
             for(Organization organization : enterprise.getOrganizationDirectory().getOrganizations()) {
                 if(organization instanceof BloodProcessingAndStorageOrganization) {
@@ -206,14 +210,14 @@ public class RequestBloodJPanel extends javax.swing.JPanel {
                     break;
                 }
             }
-            
+
             if(org != null && request.validateRequest()) {
                 org.getWorkRequestList().addWorkRequest(request);
                 userAccount.getWorkQueue().addWorkRequest(request);
                 JOptionPane.showMessageDialog(null, "Blood request sent successfully");
                 clearForm();
             }
-            
+
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter quantity in correct format");
         }
@@ -229,10 +233,14 @@ public class RequestBloodJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkUrgent;
     private javax.swing.JComboBox<String> cmbBloodType;
     private javax.swing.JComboBox<String> cmbPriority;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtPatientCondition;
     private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables

@@ -4,10 +4,17 @@
  */
 package ui.rAndD;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Enterprise.HealthCareEnterprise;
+import ecosystemworkflow.Network.Network;
+import ecosystemworkflow.Organization.ClinicalOrganization;
 import ecosystemworkflow.Organization.ClinicalTrialsManagementOrganization;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import ecosystemworkflow.WorkFlow.ClinicalTrialProtocolRequest;
+import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,17 +31,33 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Organization organization;
     private JPanel container;
-    
-    public RequestClinicalTrialJPanel(JPanel container, UserAccount account, 
-            Organization organization) {
+    private Enterprise enterprise;
+    private EcoSystem system;
+    private com.toedter.calendar.JDateChooser startDateChooser;
+    private com.toedter.calendar.JDateChooser endDateChooser;
+
+    public RequestClinicalTrialJPanel(JPanel container, UserAccount account,
+            Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.container = container;
         this.userAccount = account;
         this.organization = organization;
+        this.enterprise = enterprise;
+        this.system = system;
         setupPhaseComboBox();
         setupStudyTypeComboBox();
+
+        startDateChooser = new com.toedter.calendar.JDateChooser();
+        startDateChooser.setDateFormatString("MM/dd/yyyy");
+        startDateChooser.setBounds(300, 250, 150, 25);
+        this.add(startDateChooser);
+
+        endDateChooser = new com.toedter.calendar.JDateChooser();
+        endDateChooser.setDateFormatString("MM/dd/yyyy");
+        endDateChooser.setBounds(300, 290, 150, 25);
+        this.add(endDateChooser);
     }
-    
+
     private void setupPhaseComboBox() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         model.addElement("Phase I");
@@ -43,7 +66,7 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
         model.addElement("Phase IV");
         cmbPhase.setModel(model);
     }
-    
+
     private void setupStudyTypeComboBox() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         model.addElement("Randomized");
@@ -51,6 +74,22 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
         model.addElement("Placebo-controlled");
         model.addElement("Open-label");
         cmbStudyType.setModel(model);
+    }
+
+    private Organization findClinicalOrganization() {
+        for (Network network : system.getNetworks()) {
+            for (Enterprise ent : network.getEnterprises().getEnterpriseList()) {
+                if (ent instanceof HealthCareEnterprise) {
+                    for (Organization org : ent.getOrganizationDirectory().getOrganizations()) {
+                        if (org instanceof ClinicalOrganization) {
+                            System.out.println("Found Clinical Organization");
+                            return org;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -76,125 +115,111 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         btnSubmit = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Phase:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 174, -1, -1));
 
         cmbPhase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPhase.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(cmbPhase, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 168, 150, -1));
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Study Type:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 216, -1, -1));
 
         cmbStudyType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbStudyType.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(cmbStudyType, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 210, 150, -1));
 
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Trail Name:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 132, -1, -1));
 
+        txtTrialName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtTrialName, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 126, 150, 24));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel4.setText("Drug Name:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 258, -1, -1));
 
+        txtDrugName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 252, 150, 24));
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Description:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 336, -1, -1));
 
+        txtRequiredPatients.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtRequiredPatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 294, 150, 24));
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setText("Required Patients:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 300, -1, -1));
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
+        txtDescription.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         jScrollPane1.setViewportView(txtDescription);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 336, -1, -1));
+
+        btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
+        btnSubmit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSubmit.setText("Submit");
+        btnSubmit.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 440, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbPhase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbStudyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTrialName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRequiredPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(277, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSubmit)
-                .addGap(285, 285, 285))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtTrialName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cmbPhase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbStudyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRequiredPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnSubmit)
-                .addContainerGap(219, Short.MAX_VALUE))
-        );
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Research and Outcomes");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        backBtn.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 80, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (2).jpg"))); // NOI18N
+        jLabel8.setText("jLabel8");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 720));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
-        if(txtTrialName.getText().isEmpty() || txtDescription.getText().isEmpty() 
-                || txtRequiredPatients.getText().isEmpty() || txtDrugName.getText().isEmpty()) {
+        if(txtTrialName.getText().isEmpty() || txtDescription.getText().isEmpty()
+            || txtRequiredPatients.getText().isEmpty() || txtDrugName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill out all details");
             return;
         }
-        
+
         try {
             String trialName = txtTrialName.getText().trim();
             String description = txtDescription.getText().trim();
             int requiredPatients = Integer.parseInt(txtRequiredPatients.getText());
-            Date startDate = dateStart.getDate();
-            Date endDate = dateEnd.getDate();
-            
+            Date startDate = startDateChooser.getDate();
+            Date endDate = endDateChooser.getDate();
+
             if(startDate == null || endDate == null) {
                 JOptionPane.showMessageDialog(null, "Please select trial dates");
                 return;
             }
-            
+
             ClinicalTrialProtocolRequest request = new ClinicalTrialProtocolRequest();
             request.setMessage("New Trial Request: " + trialName);
             request.setSender(userAccount);
@@ -207,16 +232,16 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
             request.setStudyType(cmbStudyType.getSelectedItem().toString());
             request.setDrugName(txtDrugName.getText().trim());
             request.setStatus("Pending");
-            
+
             if(request.validateProtocol()) {
                 Organization researchOrg = null;
-                for(Organization org : organization.getOrganizationDirectory().getOrganizations()) {
+                for(Organization org : enterprise.getOrganizationDirectory().getOrganizations()) {
                     if(org instanceof ClinicalTrialsManagementOrganization) {
                         researchOrg = org;
                         break;
                     }
                 }
-                
+
                 if(researchOrg != null) {
                     researchOrg.getWorkRequestList().addWorkRequest(request);
                     userAccount.getWorkQueue().addWorkRequest(request);
@@ -226,14 +251,23 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(null, "Please verify all trial details");
             }
-            
+
         } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter valid number of patients");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbPhase;
     private javax.swing.JComboBox<String> cmbStudyType;
@@ -243,10 +277,38 @@ public class RequestClinicalTrialJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtDrugName;
     private javax.swing.JTextField txtRequiredPatients;
     private javax.swing.JTextField txtTrialName;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validateForm() {
+        if (txtTrialName.getText().trim().isEmpty()
+                || txtDrugName.getText().trim().isEmpty()
+                || txtRequiredPatients.getText().trim().isEmpty()
+                || txtDescription.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill all required fields");
+            return false;
+        }
+        if (startDateChooser.getDate() == null || endDateChooser.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Please select trial dates");
+            return false;
+        }
+        return true;
+    }
+
+    private void clearForm() {
+        txtTrialName.setText("");
+        txtDrugName.setText("");
+        txtRequiredPatients.setText("");
+        txtDescription.setText("");
+        startDateChooser.setDate(null);
+        endDateChooser.setDate(null);
+        cmbPhase.setSelectedIndex(0);
+        cmbStudyType.setSelectedIndex(0);
+    }
 }

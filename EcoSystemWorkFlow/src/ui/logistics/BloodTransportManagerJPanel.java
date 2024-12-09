@@ -4,10 +4,13 @@
  */
 package ui.logistics;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
 import ecosystemworkflow.Organization.Organization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import ecosystemworkflow.WorkFlow.TransportOrganizationRequest;
 import ecosystemworkflow.WorkFlow.WorkRequest;
+import java.awt.CardLayout;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,39 +25,53 @@ public class BloodTransportManagerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BloodTransportManagerJPanel
      */
-     private UserAccount userAccount;
+    private UserAccount userAccount;
     private Organization organization;
     private JPanel container;
+    private Enterprise enterprise;
+    private EcoSystem system;
     
     public BloodTransportManagerJPanel(JPanel container, UserAccount account, 
-            Organization organization) {
+            Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.container = container;
         this.userAccount = account;
         this.organization = organization;
+        this.system = system;
+        this.enterprise = enterprise;
         populateTable();
     }
     
-    private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) tblTransportRequests.getModel();
-        model.setRowCount(0);
-        
-        for(WorkRequest request : organization.getWorkRequestList().getWorkRequests()) {
-            if(request instanceof TransportOrganizationRequest) {
-                TransportOrganizationRequest tr = (TransportOrganizationRequest) request;
-                if(tr.getItemType().equals("Blood")) {
-                    Object[] row = new Object[6];
-                    row[0] = tr;
-                    row[1] = tr.getItemType();
-                    row[2] = tr.getQuantity();
-                    row[3] = tr.getPriority();
-                    row[4] = tr.getStatus();
-                    row[5] = tr.isRequiresRefrigeration();
-                    model.addRow(row);
-                }
+  private void populateTable() {
+    DefaultTableModel model = (DefaultTableModel) tblTransportRequests.getModel();
+    model.setRowCount(0);
+    
+    // Set proper column names
+    String[] columnNames = {"Request ID", "Item Type", "Quantity", "Priority", "Status", "Refrigeration"};
+    model.setColumnIdentifiers(columnNames);
+    
+    // Add debug prints
+    System.out.println("Organization: " + organization.getClass().getName());
+    System.out.println("Work Requests: " + organization.getWorkRequestList().getWorkRequests().size());
+    
+    for(WorkRequest request : organization.getWorkRequestList().getWorkRequests()) {
+        System.out.println("Request type: " + request.getClass().getName());
+        if(request instanceof TransportOrganizationRequest) {
+            TransportOrganizationRequest tr = (TransportOrganizationRequest) request;
+            if(tr.getItemType().equals("Blood")) {
+                Object[] row = new Object[6];
+                row[0] = tr;
+                row[1] = tr.getItemType();
+                row[2] = tr.getQuantity();
+                row[3] = tr.getPriority();
+                row[4] = tr.getStatus();
+                row[5] = tr.isRequiresRefrigeration();
+                model.addRow(row);
+                System.out.println("Added transport request: " + tr.getItemType());
             }
         }
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +87,12 @@ public class BloodTransportManagerJPanel extends javax.swing.JPanel {
         tblTransportRequests = new javax.swing.JTable();
         btnProcess = new javax.swing.JButton();
         btnDelivery = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblTransportRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,47 +109,53 @@ public class BloodTransportManagerJPanel extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 115, 694, 157));
+
+        btnProcess.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnProcess.setText("Process Request");
+        btnProcess.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 290, -1, -1));
 
+        btnDelivery.setBackground(new java.awt.Color(255, 255, 255));
+        btnDelivery.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnDelivery.setText("Delivery");
+        btnDelivery.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveryActionPerformed(evt);
             }
         });
+        add(btnDelivery, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 290, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnProcess)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelivery)
-                        .addGap(75, 75, 75))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProcess)
-                    .addComponent(btnDelivery))
-                .addContainerGap(318, Short.MAX_VALUE))
-        );
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Logistics");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Transport Manager ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (5).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 720));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
@@ -136,40 +165,51 @@ public class BloodTransportManagerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
+
         TransportOrganizationRequest request = (TransportOrganizationRequest)
-            tblTransportRequests.getValueAt(selectedRow, 0);
-            
+        tblTransportRequests.getValueAt(selectedRow, 0);
+
         request.setStatus("In Transit");
         request.setPickupTime(new Date());
         request.setRequiresRefrigeration(true);
-        
+
         populateTable();
         JOptionPane.showMessageDialog(null, "Blood transport initiated");
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
         // TODO add your handling code here:
-         int selectedRow = tblTransportRequests.getSelectedRow();
+        int selectedRow = tblTransportRequests.getSelectedRow();
         if(selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
+
         TransportOrganizationRequest request = (TransportOrganizationRequest)
-            tblTransportRequests.getValueAt(selectedRow, 0);
-            
+        tblTransportRequests.getValueAt(selectedRow, 0);
+
         request.setStatus("Delivered");
         request.setDeliveryTime(new Date());
-        
+
         populateTable();
         JOptionPane.showMessageDialog(null, "Blood delivery completed");
     }//GEN-LAST:event_btnDeliveryActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelivery;
     private javax.swing.JButton btnProcess;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblTransportRequests;

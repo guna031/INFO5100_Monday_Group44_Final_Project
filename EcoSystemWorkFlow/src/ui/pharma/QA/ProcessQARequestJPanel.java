@@ -61,9 +61,6 @@ public class ProcessQARequestJPanel extends javax.swing.JPanel {
         txtBatchNum = new javax.swing.JTextField();
         cmbQuality = new javax.swing.JComboBox<>();
         lblStatus = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtCommentsArea = new javax.swing.JTextArea();
         labelDrugName = new javax.swing.JLabel();
         txtDrugName = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
@@ -73,142 +70,127 @@ public class ProcessQARequestJPanel extends javax.swing.JPanel {
         lblBatchNum = new javax.swing.JLabel();
         btnUpdateStatus = new javax.swing.JButton();
         txtBatchSize = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtCommentsArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        backBtn2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtManufacturer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtManufacturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 335, 117, -1));
+
+        lblManufacturer.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblManufacturer.setText("Manufacturer:");
+        add(lblManufacturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 339, -1, -1));
 
+        lblComments.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblComments.setText("Comments:");
+        add(lblComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 382, -1, -1));
 
+        txtBatchNum.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         txtBatchNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBatchNumActionPerformed(evt);
             }
         });
+        add(txtBatchNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 180, 118, -1));
 
         cmbQuality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cmbQuality, new org.netbeans.lib.awtextra.AbsoluteConstraints(553, 180, 80, -1));
 
-        lblStatus.setText("Status");
+        lblStatus.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblStatus.setText("Status:");
+        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 304, -1, -1));
 
-        txtCommentsArea.setColumns(20);
-        txtCommentsArea.setRows(5);
-        jScrollPane1.setViewportView(txtCommentsArea);
-
-        jScrollPane2.setViewportView(jScrollPane1);
-
+        labelDrugName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         labelDrugName.setText("Drug Name:");
+        add(labelDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 229, -1, -1));
 
+        txtDrugName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         txtDrugName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDrugNameActionPerformed(evt);
             }
         });
+        add(txtDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 225, 118, -1));
 
+        txtStatus.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 300, 117, -1));
+
+        lblQualityGrade.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblQualityGrade.setText("Quality Grade:");
+        add(lblQualityGrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 186, -1, -1));
 
+        labelQuantity.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         labelQuantity.setText("Batch Size:");
+        add(labelQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 264, -1, -1));
 
-        chkPassed.setText("pass");
+        chkPassed.setBackground(new java.awt.Color(255, 255, 255));
+        chkPassed.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        chkPassed.setText("Pass");
         chkPassed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkPassedActionPerformed(evt);
             }
         });
+        add(chkPassed, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 60, -1));
 
+        lblBatchNum.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblBatchNum.setText("Batch Number:");
+        add(lblBatchNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 186, -1, -1));
 
-        btnUpdateStatus.setText("update");
+        btnUpdateStatus.setBackground(new java.awt.Color(255, 255, 255));
+        btnUpdateStatus.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnUpdateStatus.setText("Update");
         btnUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateStatusActionPerformed(evt);
             }
         });
+        add(btnUpdateStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 100, -1));
 
+        txtBatchSize.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         txtBatchSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBatchSizeActionPerformed(evt);
             }
         });
+        add(txtBatchSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 260, 118, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblManufacturer)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelDrugName)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblBatchNum)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBatchNum, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelQuantity)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBatchSize, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblStatus)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblQualityGrade)
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbQuality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(chkPassed)
-                                .addGap(8, 8, 8))
-                            .addComponent(btnUpdateStatus)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblComments, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(164, 164, 164)))
-                .addGap(175, 175, 175))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBatchNum)
-                    .addComponent(txtBatchNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbQuality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblQualityGrade))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDrugName)
-                    .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelQuantity)
-                    .addComponent(txtBatchSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkPassed))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUpdateStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblStatus)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblManufacturer)
-                    .addComponent(txtManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblComments)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
+        txtCommentsArea.setColumns(20);
+        txtCommentsArea.setRows(5);
+        txtCommentsArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        jScrollPane1.setViewportView(txtCommentsArea);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 382, 232, 96));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Pharmaceuticals");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 18, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("QA Request");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 75, -1, -1));
+
+        backBtn2.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn2.setText("Back");
+        backBtn2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        backBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtn2ActionPerformed(evt);
+            }
+        });
+        add(backBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 109, 80, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (3).jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBatchNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatchNumActionPerformed
@@ -225,16 +207,16 @@ public class ProcessQARequestJPanel extends javax.swing.JPanel {
 
     private void btnUpdateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStatusActionPerformed
         // TODO add your handling code here:
-         if(txtCommentsArea.getText().trim().isEmpty()) {
+        if(txtCommentsArea.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please add inspection comments");
             return;
         }
-        
+
         try {
             request.setInspectorComments(txtCommentsArea.getText().trim());
             request.setQualityGrade(cmbQuality.getSelectedItem().toString());
             request.setPassedQualityCheck(chkPassed.isSelected());
-            
+
             if(request.isPassedQualityCheck()) {
                 TransportOrganizationRequest transportRequest = new TransportOrganizationRequest();
                 transportRequest.setMessage("Transport for " + request.getBatchNumber());
@@ -242,7 +224,7 @@ public class ProcessQARequestJPanel extends javax.swing.JPanel {
                 transportRequest.setItemType(request.getDrugName());
                 transportRequest.setQuantity(request.getBatchSize());
                 transportRequest.setStatus("Pending Pickup");
-                
+
                 Organization transportOrg = null;
                 for(Network network : system.getNetworks()) {
                     for(Enterprise ent : network.getEnterprises().getEnterpriseList()) {
@@ -264,28 +246,40 @@ public class ProcessQARequestJPanel extends javax.swing.JPanel {
                 request.setStatus("Failed QA Check");
                 JOptionPane.showMessageDialog(null, "QA Failed - Drug production needs revision");
             }
-            
+
             container.remove(this);
             CardLayout layout = (CardLayout) container.getLayout();
             layout.previous(container);
-            
+
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Error updating status: " + e.getMessage());
         }
-       
+
     }//GEN-LAST:event_btnUpdateStatusActionPerformed
 
     private void txtBatchSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatchSizeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBatchSizeActionPerformed
 
+    private void backBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn2ActionPerformed
+        // TODO add your handling code here:
+
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_backBtn2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton backBtn2;
     private javax.swing.JButton btnUpdateStatus;
     private javax.swing.JCheckBox chkPassed;
     private javax.swing.JComboBox<String> cmbQuality;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDrugName;
     private javax.swing.JLabel labelQuantity;
     private javax.swing.JLabel lblBatchNum;

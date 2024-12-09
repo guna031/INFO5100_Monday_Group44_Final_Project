@@ -4,9 +4,14 @@
  */
 package ui.bloodSupply;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Enterprise.LogisticEnterprise;
 import ecosystemworkflow.Organization.Organization;
+import ecosystemworkflow.Organization.TransportOrganization;
 import ecosystemworkflow.UserAccount.UserAccount;
 import ecosystemworkflow.WorkFlow.BloodSupplyRequest;
+import ecosystemworkflow.WorkFlow.TransportOrganizationRequest;
 import ecosystemworkflow.WorkFlow.WorkRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,22 +29,31 @@ public class BloodBankManagerWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Organization organization;
     private JPanel container;
-    
-    public BloodBankManagerWorkAreaJPanel(JPanel container, UserAccount account, 
-            Organization organization) {
+    private Enterprise ent;
+    private EcoSystem system;
+
+    public BloodBankManagerWorkAreaJPanel(JPanel container, UserAccount account,
+            Organization organization, Enterprise ent,
+            EcoSystem system) {
         initComponents();
         this.container = container;
         this.userAccount = account;
         this.organization = organization;
+        this.ent = ent;
+        this.system = system;
         populateTable();
     }
-    
+
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblBloodRequests.getModel();
         model.setRowCount(0);
-        
-        for(WorkRequest request : organization.getWorkRequestList().getWorkRequests()) {
-            if(request instanceof BloodSupplyRequest) {
+
+        System.out.println("Organization: " + organization.getClass().getName());
+        System.out.println("Work Requests: " + organization.getWorkRequestList().getWorkRequests().size());
+
+        for (WorkRequest request : organization.getWorkRequestList().getWorkRequests()) {
+            System.out.println("Request type: " + request.getClass().getName());
+            if (request instanceof BloodSupplyRequest) {
                 BloodSupplyRequest br = (BloodSupplyRequest) request;
                 Object[] row = new Object[6];
                 row[0] = br;
@@ -49,6 +63,7 @@ public class BloodBankManagerWorkAreaJPanel extends javax.swing.JPanel {
                 row[4] = br.getStatus();
                 row[5] = br.getRequiredByDate();
                 model.addRow(row);
+                System.out.println("Added blood request to table: " + br.getBloodType());
             }
         }
     }
@@ -66,6 +81,11 @@ public class BloodBankManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBloodRequests = new javax.swing.JTable();
         btnProcess = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblBloodRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,36 +102,32 @@ public class BloodBankManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 142, 657, 100));
+
+        btnProcess.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnProcess.setText("Process Request ");
+        btnProcess.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnProcess)
-                        .addGap(44, 44, 44))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnProcess)
-                .addContainerGap(161, Short.MAX_VALUE))
-        );
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Blood Bank");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Blood Bank Manager ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (4).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 680));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
@@ -121,14 +137,14 @@ public class BloodBankManagerWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-        
+
         BloodSupplyRequest request = (BloodSupplyRequest)
-            tblBloodRequests.getValueAt(selectedRow, 0);
-            
+        tblBloodRequests.getValueAt(selectedRow, 0);
+
         request.setStatus("Processing");
         request.setTemperature(4.0);
         request.setStorageRequirements("Standard Blood Storage Protocol");
-        
+
         populateTable();
         JOptionPane.showMessageDialog(null, "Blood request processing initiated");
     }//GEN-LAST:event_btnProcessActionPerformed
@@ -136,6 +152,9 @@ public class BloodBankManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProcess;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblBloodRequests;

@@ -4,17 +4,36 @@
  */
 package ui.pharma;
 
+import ecosystemworkflow.EcoSystem;
+import ecosystemworkflow.Enterprise.Enterprise;
+import ecosystemworkflow.Organization.DrugProductionOrganization;
+import ecosystemworkflow.Organization.Organization;
+import ecosystemworkflow.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import ui.pharma.User.DrugProductionManagerWorkAreaJPanel;
+
 /**
  *
  * @author gunav
  */
 public class PharmaceuticalWorkAreaJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PharmaceuticalWorkAreaJPanel
-     */
-    public PharmaceuticalWorkAreaJPanel() {
+  
+    private JPanel workArea;
+    private UserAccount UserAccount;
+    private DrugProductionOrganization org;
+    private Enterprise Enterprise;
+    private EcoSystem ESystem;
+
+
+    public PharmaceuticalWorkAreaJPanel(JPanel workArea,UserAccount userAccount,Organization org,Enterprise enterprise,EcoSystem eSystem) {
         initComponents();
+        this.workArea=workArea;
+        this.UserAccount=userAccount;
+        this.org= (DrugProductionOrganization)org;
+        this.Enterprise=enterprise;
+        this.ESystem=eSystem;
     }
 
     /**
@@ -26,19 +45,87 @@ public class PharmaceuticalWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        btnManage = new javax.swing.JButton();
+        btnViewReq = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        backBtn2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnManage.setBackground(new java.awt.Color(255, 255, 255));
+        btnManage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnManage.setText("MANAGE MANUFACTURE");
+        btnManage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageActionPerformed(evt);
+            }
+        });
+        add(btnManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, -1, 59));
+
+        btnViewReq.setBackground(new java.awt.Color(255, 255, 255));
+        btnViewReq.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnViewReq.setText("VIEW REQUESTS");
+        btnViewReq.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        btnViewReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewReqActionPerformed(evt);
+            }
+        });
+        add(btnViewReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 210, 51));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Pharmaceutical");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        backBtn2.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn2.setText("Back");
+        backBtn2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        backBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtn2ActionPerformed(evt);
+            }
+        });
+        add(backBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 109, 80, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Untitled design (3).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 720));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageActionPerformed
+        PharmaceuticalManagementPanel dMW = new PharmaceuticalManagementPanel(workArea,ESystem, Enterprise );
+        workArea.add("PharmaceuticalManagementPanel", dMW);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnManageActionPerformed
+
+    private void btnViewReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReqActionPerformed
+        DrugProductionManagerWorkAreaJPanel dMW = new DrugProductionManagerWorkAreaJPanel(workArea, UserAccount,org, Enterprise, ESystem );
+        workArea.add("DrugProductionManagerWorkAreaJPanel", dMW);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea);
+
+    }//GEN-LAST:event_btnViewReqActionPerformed
+
+    private void backBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn2ActionPerformed
+        // TODO add your handling code here:
+
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }//GEN-LAST:event_backBtn2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton backBtn1;
+    private javax.swing.JButton backBtn2;
+    private javax.swing.JButton btnManage;
+    private javax.swing.JButton btnViewReq;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
